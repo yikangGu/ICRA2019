@@ -2,6 +2,7 @@
 *.aux
 *.log
 *.synctex.gz
+*.out
 
 # PPT
 *.pptx
@@ -22,3 +23,12 @@ Makefile
 
 # MacOSX
 *.DS_Store
+
+# ROS
+build/
+devel/
+install/
+.catkin_workspace
+devel_isolated/
+el/
+el_isolated/
