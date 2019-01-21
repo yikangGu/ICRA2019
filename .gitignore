@@ -3,6 +3,7 @@
 *.log
 *.synctex.gz
 *.out
+*.dvi
 
 # PPT
 *.pptx
