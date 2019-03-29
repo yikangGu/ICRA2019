@@ -4,7 +4,7 @@ For the 2019 ICRA AI Challenge
 
 ## 环境
 
-| name    | version    | commit                |
+| name    | version    | comment               |
 |:--------|:-----------|:----------------------|
 | Ubuntu  | 16.04 LTS  |                       |
 | ROS     | kinetic    |                       |
@@ -12,7 +12,7 @@ For the 2019 ICRA AI Challenge
 
 ## 设置
 
-前提先安装 ros-kinetic-full-desktop 版本, 而后依次按照一下 RoboRTS 依赖包.
+前提先安装 ros-kinetic-full-desktop 版本, 而后依次安装以下 RoboRTS 依赖包.
 
 ```bash
 sudo apt-get install -y ros-kinetic-opencv3             \
