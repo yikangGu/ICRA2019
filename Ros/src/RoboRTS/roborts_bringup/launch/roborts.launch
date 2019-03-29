@@ -41,7 +41,7 @@
   </node>
 
   <!-- Run the scan filter -->
-  <include file="$(find roborts_bringup)/launch/scan_filter.launch" />
+  <!-- <include file="$(find roborts_bringup)/launch/scan_filter.launch" /> -->
 
   <!-- Run the localization node -->
   <node pkg="roborts_localization" type="localization_node" name="localization_node" respawn="false" />

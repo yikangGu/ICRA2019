@@ -23,13 +23,13 @@
       <param name="resolution_fixed"    type="bool"   value="true"/>
       <param name="angle_min"    type="double" value="-180" />
       <param name="angle_max"    type="double" value="180" />
-      <param name="range_min"    type="double" value="0.08" />
+      <param name="range_min"    type="double" value="0.20" />
       <param name="range_max"    type="double" value="10.0" />
       <param name="ignore_array" type="string" value="" />
   </node>
 
   <!-- Run the scan filter -->
-  <include file="$(find roborts_bringup)/launch/scan_filter.launch" />
+  <!-- <include file="$(find roborts_bringup)/launch/scan_filter.launch" /> -->
 
   <!-- Run the localization node -->
   <node pkg="roborts_localization" type="localization_node" name="localization_node" respawn="false" />
