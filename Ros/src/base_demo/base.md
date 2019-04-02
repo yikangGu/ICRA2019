@@ -12,5 +12,34 @@ Node 是组成 ROS 的基本运行单位(可以看做一个应用程序, 其包�
 
 在 RoboRTS / roborts_base / 下我们可以发现 **roborts_base_node.cpp** 文件.
 
-分析可以知道, 它创建了名为 "roborts_base_node" 的 Node, 并从 **roborts_base_config.h** 文件引用了某些参数 (这里我们可以忽视), 并初始化了 Chassis 和 Gimbal 这两个类 (ROS 的源文件喜欢用类来封装, 好处多多, TODO:介绍 Node 用类实现), 然后是定义了 ROS 在运行时, 这个 Node 永不退出, 并且随着 1000 ms 后刷新一遍.
+分析可以知道, 它创建了名为 "roborts_base_node" 的 Node.
 
+```cpp
+  ros::init(argc, argv, "roborts_base_node");
+```
+
+并从 **roborts_base_config.h** 文件引用了某些参数 (这里我们可以忽视).
+
+```cpp
+  roborts_base::Config config;
+  config.GetParam(&nh);
+  auto handle = std::make_shared<roborts_sdk::Handle>(config.serial_port);
+```
+
+并初始化了 Chassis 和 Gimbal 这两个类 (ROS 的源文件喜欢用类来封装, 好处多多, TODO:介绍 Node 用类实现).
+
+```cpp
+  roborts_base::Chassis chassis(handle);
+  roborts_base::Gimbal gimbal(handle);
+```
+
+然后是定义了 ROS 在运行时, 这个 Node 永不退出, 并且随着 1000 ms 后刷新一遍.
+
+```cpp
+  while(ros::ok())
+  {
+    handle->Spin();
+    ros::spinOnce();
+    usleep(1000);
+  }
+```
