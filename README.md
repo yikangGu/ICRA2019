@@ -41,7 +41,9 @@ $ catkin_make
 $ source devel/setup.bash
 ```
 
-## 说明
+## 教程/说明
+
+ROS/RoboRTS 入门简易教程 : [Tutorial for beginner](https://github.com/yikangGu/ICRA2019/blob/master/Docs/README.md)
 
 demo 都是自己写的文件, 可以参考并DIY, 需要学习基本的 ros node/ server/ action 的写法, demo 基本都在引用官方写的 node/ server/ action 而做处理而已.
 
