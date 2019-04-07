@@ -8,4 +8,4 @@
 
 ## ROS 的简易教程
 
-1) [Topic 的简易教程](https://github.com/yikangGu/ICRA2019/blob/master/Docs/topic.md)
+1) [topic 的简易教程](https://github.com/yikangGu/ICRA2019/blob/master/Docs/topic.md)
