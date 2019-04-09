@@ -76,3 +76,18 @@ rosservice ...
 rosnode list
 rosnode ...
 ```
+
+## 模拟器（开发中）
+
+在 src/map_demo 下是 ICRA 2019 in ROS Simulator 的雏形 Demo.
+基于 ROS 环境建立的 ICRA 2019 模拟器应该是较接近现实的.
+
+<div align="center">
+  <img src=imgs/1.gif width="720px"/>
+</div>
+
+其中 gl 为 Simulator 的场地信息, 提取自 Global Planner Map, 用 OpenCV 进行处理, 可以从雷达的信息获知与原始地图相冲突的奇异点, 从而的得到潜在敌人的信息.
+
+同时, 通过 ROS 自洽的环境, 在 tf 层上, 此模拟器都可以从中获取信息.
+再通过 Pygame 或者 其他界面环境封装, 以达到基于 ROS 的 ICRA 2019 模拟器.
+再交由 RL 算法进行训练, 训练结果理论上是贴合现实环境的.
