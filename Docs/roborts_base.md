@@ -147,21 +147,38 @@ void Chassis::ROS_Init(){
 
 ### ChassisInfoCallback 回调函数
 
-```cpp
-void Chassis::ChassisInfoCallback(const std::shared_ptr<roborts_sdk::cmd_chassis_info> chassis_info){
+ChassisInfo 回调函数是获取主控板 (下位机) 的信息
+先贴上 ChassisInfo 回调函数的声明, 然后让我们一段一段拆开定义来看.
 
+```cpp
+void Chassis::ChassisInfoCallback(const std::shared_ptr<roborts_sdk::cmd_chassis_info> chassis_info); {
+```
+
+这里函数声明表示, ChassisInfoCallback 接收一个分享型指针常量, 是指向 cmd_chassis_info 的数据.
+
+```cpp
   ros::Time current_time = ros::Time::now();
   odom_.header.stamp = current_time;
+```
+
+给消息加上时间戳.
+
+```cpp
   odom_.pose.pose.position.x = chassis_info->position_x_mm/1000.;
   odom_.pose.pose.position.y = chassis_info->position_y_mm/1000.;
   odom_.pose.pose.position.z = 0.0;
+
   geometry_msgs::Quaternion q = tf::createQuaternionMsgFromYaw(chassis_info->gyro_angle / 1800.0 * M_PI);
   odom_.pose.pose.orientation = q;
   odom_.twist.twist.linear.x = chassis_info->v_x_mm / 1000.0;
   odom_.twist.twist.linear.y = chassis_info->v_y_mm / 1000.0;
   odom_.twist.twist.angular.z = chassis_info->gyro_rate / 1800.0 * M_PI;
   ros_odom_pub_.publish(odom_);
+```
 
+上面是 ROS 里的 odom_ 接收来自底盘的信息反馈, 然后由 ROS 里的 odom 发布者发布出去.
+
+```cpp
   odom_tf_.header.stamp = current_time;
   odom_tf_.transform.translation.x = chassis_info->position_x_mm/1000.;
   odom_tf_.transform.translation.y = chassis_info->position_y_mm/1000.;
@@ -169,9 +186,11 @@ void Chassis::ChassisInfoCallback(const std::shared_ptr<roborts_sdk::cmd_chassis
   odom_tf_.transform.translation.z = 0.0;
   odom_tf_.transform.rotation = q;
   tf_broadcaster_.sendTransform(odom_tf_);
-
 }
 ```
+
+上面是 odom_tf_ 的 x, y 接收底盘的信息, z 为0, q 为由 gyro_angle 解算出来的 Quaternion.
+然后将 odom_tf_ 信息挂载到 tf_tree 的消息树上, 也就是将 odom_tf_ 信息发送到 tf_tree 里.
 
 ---
 
@@ -231,8 +250,10 @@ ROS_Init() 定义表明, gimbal 的 ROS 端建立了一个 Subscriber 和三个 
 
 ### GimbalInfoCallback 回调函数
 
+同理, gimbalInfo 回调函数接收从云台获取到的信息.
+
 ```cpp
-void Gimbal::GimbalInfoCallback(const std::shared_ptr<roborts_sdk::cmd_gimbal_info> gimbal_info){
+void Gimbal::GimbalInfoCallback(const std::shared_ptr<roborts_sdk::cmd_gimbal_info> gimbal_info) {
 
   ros::Time current_time = ros::Time::now();
   geometry_msgs::Quaternion q = tf::createQuaternionMsgFromRollPitchYaw(0.0,
@@ -247,3 +268,6 @@ void Gimbal::GimbalInfoCallback(const std::shared_ptr<roborts_sdk::cmd_gimbal_in
 
 }
 ```
+
+因为官方的云台为 pitch 和 yaw 轴两轴, 所以 Roll 轴为 0, 然后 gimbal_tf_ 的 z 轴为 0.15 可能是因为云台距离底盘理想中点的 z 轴上方 15cm 吧.
+最后将 gimbal_tf_ 发布至 tf_tree.
