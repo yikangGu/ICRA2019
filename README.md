@@ -90,7 +90,7 @@ rosnode ...
 基于 ROS 环境建立的 ICRA 2019 模拟器应该是较接近现实的.
 
 <div align="center">
-  <img src=imgs/1.gif width="720px"/>
+  <img src=Docs/imgs/1.gif width="720px"/>
 </div>
 
 其中 gl 为 Simulator 的场地信息, 提取自 Global Planner Map, 用 OpenCV 进行处理, 可以从雷达的信息获知与原始地图相冲突的奇异点, 从而的得到潜在敌人的信息.

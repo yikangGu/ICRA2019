@@ -271,3 +271,5 @@ void Gimbal::GimbalInfoCallback(const std::shared_ptr<roborts_sdk::cmd_gimbal_in
 
 因为官方的云台为 pitch 和 yaw 轴两轴, 所以 Roll 轴为 0, 然后 gimbal_tf_ 的 z 轴为 0.15 可能是因为云台距离底盘理想中点的 z 轴上方 15cm 吧.
 最后将 gimbal_tf_ 发布至 tf_tree.
+
+---
