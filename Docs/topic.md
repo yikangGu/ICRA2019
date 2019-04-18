@@ -90,7 +90,7 @@ if __name__ == '__main__':
     talker()
 ```
 
-完整的代码在 [Publisher.py](https://github.com/yikangGu/ICRA2019/blob/master/Docs/src/Publisher.py)
+完整的代码在 [Publisher.py](https://github.com/yikangGu/ICRA2019/blob/master/Docs/src/topic_demo/src/Publisher.py)
 
 ---
 
@@ -130,4 +130,4 @@ if __name__ == '__main__':
 
 说明, 每收到 x, y, 便会计算它们的欧基里德距离, 然后连同 state 一起打印出来.
 
-完整的代码在 [Subscriber.py](https://github.com/yikangGu/ICRA2019/blob/master/Docs/src/Subscriber.py)
+完整的代码在 [Subscriber.py](https://github.com/yikangGu/ICRA2019/blob/master/Docs/src/topic_demo/src/Subscriber.py)
